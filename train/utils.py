@@ -44,7 +44,7 @@ class ImageTransform():
     def __init__(self, mean=([0.4741, 0.4799, 0.4672]), std=[0.2029, 0.2042, 0.2034]):
         self.data_transform = T.Compose([
             T.ToTensor(),
-            T.Normalize(mean, std)
+            # T.Normalize(mean, std)
         ])
 
     def __call__(self, img):
@@ -146,7 +146,7 @@ class DnCNN(nn.Module):
     def forward(self, x):
         out = self.dncnn(x)
         res = out - x
-        return out, res
+        return out, res, x-out
     
     
 

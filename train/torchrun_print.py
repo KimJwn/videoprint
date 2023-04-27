@@ -194,7 +194,7 @@ class DnCNN(nn.Module):
 
     def forward(self, x):
         noise = self.dncnn(x)
-        return noise, x-noise, noise-x
+        return noise, noise-x, x-noise
     
 class DistanceBasedLogitLoss(nn.Module):
     def __init__(self, len = 200, margin=1.0, lambda_ = 0.1):
@@ -348,7 +348,7 @@ class Trainer:
                 
             if self.gpu_id == 0 :
                 self.logger.info(log)
-                if epoch % self.save_every == 0:    self._save_snapshot(epoch)
+                if epoch % self.save_every == 1:    self._save_snapshot(epoch)
             
         gc.collect()
         torch.cuda.empty_cache()
